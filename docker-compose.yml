@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  db_freight-management:
+    image: postgres
+    container_name: db_freight-management
+    restart: always
+    ports:
+      - ${POSTGRES_HOST_PORT}:${POSTGRES_CONTAINER_PORT}
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    volumes:
+      - pgdata:/data/postgres
+
+volumes:
+  pgdata:
+    driver: local
+
+
