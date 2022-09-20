@@ -1,4 +1,6 @@
 import "dotenv/config";
+import "reflect-metadata";
+import "../../container";
 import express, { NextFunction, Request, Response } from "express";
 
 import "express-async-errors";
