@@ -12,7 +12,7 @@ class UsersRepository implements IUsersRepository {
     this.repository = AppDataSource.getRepository(User);
   }
 
-  async create(data: ICreateUserDTO): Promise<void> {
+  async create(data: ICreateUserDTO): Promise<User> {
     const { nationalIdentity, password, fullName, profile, companyId } = data;
 
     const userCreated = this.repository.create({
@@ -24,11 +24,15 @@ class UsersRepository implements IUsersRepository {
     });
 
     await this.repository.save(userCreated);
+
+    return userCreated;
   }
+
   async findByNationalIdentity(nationalIdentity: string): Promise<User> {
     const user = await this.repository.findOne({ where: { nationalIdentity } });
     return user;
   }
+
   async findById(user_id: string): Promise<User> {
     const user = await this.repository.findOne({ where: { id: user_id } });
     return user;
