@@ -21,6 +21,23 @@ class CreateUserUseCase {
     profile,
     companyId,
   }: ICreateUserDTO): Promise<User> {
+    let userProfile = profile;
+    if (!userProfile) {
+      userProfile = "driver";
+    }
+
+    if (!fullName) {
+      throw new AppError("Full Name is required");
+    }
+
+    if (!password) {
+      throw new AppError("Password is required");
+    }
+
+    if (!companyId) {
+      throw new AppError("Company is required");
+    }
+
     if (!nationalIdentity) {
       throw new AppError("National Identity is required");
     }
@@ -46,7 +63,7 @@ class CreateUserUseCase {
       nationalIdentity,
       password: passwordHashed,
       fullName,
-      profile,
+      profile: userProfile,
       companyId,
     });
 
