@@ -1,11 +1,11 @@
 import { hash } from "bcryptjs";
 import { inject, injectable } from "tsyringe";
 
-import { AppError } from "../../../shared/errors/AppError";
-import { isValidCPF } from "../../../shared/utils";
-import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
-import { User } from "../infra/typeorm/entities/User";
-import { IUsersRepository } from "../repositories/IUsersRepository";
+import { AppError } from "../../../../shared/errors/AppError";
+import { isValidCPF } from "../../../../shared/utils";
+import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
+import { User } from "../../infra/typeorm/entities/User";
+import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 @injectable()
 class CreateUserUseCase {
