@@ -126,3 +126,7 @@ tmp/*
 
 # orm datasource
 data-source.ts
+
+# config auth
+*/config/auth.*
+!*/config/*.example.*

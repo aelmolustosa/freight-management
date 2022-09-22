@@ -12,10 +12,10 @@ class AuthenticateUserController {
       const authenticateUserUseCase = container.resolve(
         AuthenticateUserUseCase
       );
-      const userAuthenticated = await authenticateUserUseCase.execute(
+      const userAuthenticated = await authenticateUserUseCase.execute({
         nationalIdentity,
-        password
-      );
+        password,
+      });
 
       return response.status(200).json({
         userAuthenticated,

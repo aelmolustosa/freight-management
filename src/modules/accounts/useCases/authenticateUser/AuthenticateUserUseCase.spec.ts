@@ -27,35 +27,54 @@ describe("Authenticate User", () => {
   });
 
   it("Should be able to login", async () => {
-    const user = await authenticateUserUseCase.execute(
-      "73290726134",
-      "y3*072PU"
-    );
+    const userAuthenticated = await authenticateUserUseCase.execute({
+      nationalIdentity: "73290726134",
+      password: "y3*072PU",
+    });
 
-    expect(user).toHaveProperty("id");
+    expect(userAuthenticated).toHaveProperty(
+      "user.name",
+      "Alguém com Sobrenome da Silva"
+    );
+    expect(userAuthenticated).toHaveProperty(
+      "user.nationalIdentity",
+      "73290726134"
+    );
   });
 
   it("Should not be able to login with wrong password", async () => {
     await expect(
-      authenticateUserUseCase.execute("73290726134", "y3*072P1")
+      authenticateUserUseCase.execute({
+        nationalIdentity: "73290726134",
+        password: "y3*072P1",
+      })
     ).rejects.toEqual(new AppError("User and password does not match"));
   });
 
   it("Should not be able to login with nationalIdentity no existent", async () => {
     await expect(
-      authenticateUserUseCase.execute("73290726134", "y3*072P1")
+      authenticateUserUseCase.execute({
+        nationalIdentity: "73290726134",
+        password: "y3*072P1",
+      })
     ).rejects.toEqual(new AppError("User and password does not match"));
   });
 
   it("Should not be able to login with no password", async () => {
     await expect(
-      authenticateUserUseCase.execute("73290726134", "")
+      authenticateUserUseCase.execute({
+        nationalIdentity: "73290726134",
+        password: "",
+      })
     ).rejects.toEqual(new AppError("Password is required"));
   });
 
   it("Should not be able to login with no nationalIdentity", async () => {
-    await expect(authenticateUserUseCase.execute("", "123456")).rejects.toEqual(
-      new AppError("National Identity is required")
-    );
+    await expect(
+      authenticateUserUseCase.execute({
+        nationalIdentity: "",
+        password: "123456",
+      })
+    ).rejects.toEqual(new AppError("National Identity is required"));
   });
 });

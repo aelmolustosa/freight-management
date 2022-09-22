@@ -11,6 +11,9 @@
       ],
       "@modules/*":[
         "modules/*"
+      ],
+      "@config/*":[
+        "config/*"
       ]
     },
     "resolveJsonModule": true,

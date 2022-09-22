@@ -1,7 +1,6 @@
 import request from "supertest";
 import { stringify } from "ts-jest";
 
-import { AppError } from "@shared/errors/AppError";
 import { app } from "@shared/infra/http/app";
 import { AppDataSource } from "@shared/infra/typeorm/DataSource";
 import { delay } from "@shared/utils";
