@@ -14,3 +14,11 @@ export function isValidCPF(pCpf: string) {
     10;
   return rest(10) === cpfNumbersList[9] && rest(11) === cpfNumbersList[10];
 }
+
+export function delay(delayInms) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(2);
+    }, delayInms);
+  });
+}

@@ -21,8 +21,9 @@ class AuthenticateUserController {
         userAuthenticated,
       });
     } catch (error) {
-      console.error(error);
-      throw new AppError((error as Error).message, 500);
+      const appError: AppError = error;
+      console.log(appError);
+      throw appError;
     }
   }
 }

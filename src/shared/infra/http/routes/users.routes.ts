@@ -5,6 +5,6 @@ import { CreateUserController } from "../../../../modules/accounts/useCases/crea
 const usersRoutes = Router();
 
 const createUserController = new CreateUserController();
-usersRoutes.get("/", createUserController.handle);
+usersRoutes.post("/", createUserController.handle);
 
 export { usersRoutes };
