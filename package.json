@@ -44,6 +44,6 @@
     "dev": "ts-node-dev -r tsconfig-paths/register --poll --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "typeormDS": "typeorm-ts-node-commonjs -d src/shared/infra/typeorm/DataSource.ts",
-    "test": "jest -i --detectOpenHandles"
+    "test": "jest -i --detectOpenHandles --verbose"
   }
 }

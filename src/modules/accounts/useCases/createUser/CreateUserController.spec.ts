@@ -21,7 +21,7 @@ describe("Create User Controller", () => {
       profile: "Admin",
       companyId: "00111222444455",
     });
-    await delay(500);
+    await delay(700);
 
     expect(responsePostUsers).toHaveProperty("status", 201);
   });
