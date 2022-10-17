@@ -2,6 +2,8 @@ import { IProfileUserDTO } from "@modules/accounts/dtos/IProfileUserDTO";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 import { inject, injectable } from "tsyringe";
 
+import { AppError } from "@shared/errors/AppError";
+
 @injectable()
 class ProfileUserUseCase {
   constructor(
@@ -10,8 +12,12 @@ class ProfileUserUseCase {
   ) {}
 
   async execute(user_id: string): Promise<IProfileUserDTO> {
-    const { id, nationalIdentity, fullName, profile, companyId } =
-      await this.usersRepository.findById(user_id);
+    const user = await this.usersRepository.findById(user_id);
+    if (!user) {
+      throw new AppError("User does not exists");
+    }
+
+    const { id, nationalIdentity, fullName, profile, companyId } = user;
 
     const profileUser: IProfileUserDTO = {
       id,
