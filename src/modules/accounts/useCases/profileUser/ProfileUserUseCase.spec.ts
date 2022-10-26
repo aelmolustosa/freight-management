@@ -25,18 +25,15 @@ describe("Profile User UseCase", () => {
   });
 
   it("Should be able to get profile from the logged user", async () => {
-    const profileUser = await profileUserUseCase.execute(user.id);
+    const profileUser = await profileUserUseCase.execute(
+      user.id,
+      "73290726134"
+    );
 
     expect(profileUser).toHaveProperty("nationalIdentity", "73290726134");
     expect(profileUser).toHaveProperty(
       "fullName",
       "Alguém com Sobrenome da Silva"
-    );
-  });
-
-  it("Should not be able to get profile from another user", async () => {
-    await expect(profileUserUseCase.execute("123")).rejects.toBeInstanceOf(
-      AppError
     );
   });
 });

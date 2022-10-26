@@ -1,4 +1,5 @@
 import auth from "@config/auth";
+import { IAuthenticatedUserDTO } from "@modules/accounts/dtos/IAuthenticateUserDTO";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
@@ -11,17 +12,6 @@ interface IRequest {
   password: string;
 }
 
-interface IUserResponse {
-  name: string;
-  nationalIdentity: string;
-}
-
-interface IResponse {
-  user: IUserResponse;
-  token: string;
-  refresh_token: string;
-}
-
 @injectable()
 class AuthenticateUserUseCase {
   constructor(
@@ -29,7 +19,10 @@ class AuthenticateUserUseCase {
     private usersRepository: IUsersRepository
   ) {}
 
-  async execute({ nationalIdentity, password }: IRequest): Promise<IResponse> {
+  async execute({
+    nationalIdentity,
+    password,
+  }: IRequest): Promise<IAuthenticatedUserDTO> {
     const {
       secret_token,
       expires_in_token,
@@ -68,7 +61,7 @@ class AuthenticateUserUseCase {
       expiresIn: expires_in_refresh_token,
     });
 
-    const tokenResponse: IResponse = {
+    const tokenResponse: IAuthenticatedUserDTO = {
       user: {
         name: user.fullName,
         nationalIdentity: user.nationalIdentity,

@@ -11,13 +11,30 @@ class ProfileUserUseCase {
     private usersRepository: IUsersRepository
   ) {}
 
-  async execute(user_id: string): Promise<IProfileUserDTO> {
-    const user = await this.usersRepository.findById(user_id);
+  async execute(
+    logged_user_id: string,
+    nationalIdentity: string
+  ): Promise<IProfileUserDTO> {
+    const logged_user = await this.usersRepository.findById(logged_user_id);
+
+    if (logged_user.profile !== "Admin") {
+      if (logged_user.nationalIdentity !== nationalIdentity) {
+        throw new AppError("Not allowed");
+      }
+    }
+
+    if (!nationalIdentity) {
+      throw new AppError("User does not specified");
+    }
+
+    const user = await this.usersRepository.findByNationalIdentity(
+      nationalIdentity
+    );
     if (!user) {
       throw new AppError("User does not exists");
     }
 
-    const { id, nationalIdentity, fullName, profile, companyId } = user;
+    const { id, fullName, profile, companyId } = user;
 
     const profileUser: IProfileUserDTO = {
       id,
