@@ -1,8 +1,6 @@
 import { User } from "@modules/accounts/infra/typeorm/entities/User";
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
 
-import { AppError } from "@shared/errors/AppError";
-
 import { ProfileUserUseCase } from "./ProfileUserUseCase";
 
 let usersRepositoryInMemory: UsersRepositoryInMemory;
@@ -14,7 +12,7 @@ describe("Profile User UseCase", () => {
     usersRepositoryInMemory = new UsersRepositoryInMemory();
 
     user = await usersRepositoryInMemory.create({
-      nationalIdentity: "73290726134",
+      nationalIdentity: "75598745178",
       password: "y3*072PU",
       fullName: "Alguém com Sobrenome da Silva",
       profile: "admin",
@@ -27,10 +25,10 @@ describe("Profile User UseCase", () => {
   it("Should be able to get profile from the logged user", async () => {
     const profileUser = await profileUserUseCase.execute(
       user.id,
-      "73290726134"
+      "75598745178"
     );
 
-    expect(profileUser).toHaveProperty("nationalIdentity", "73290726134");
+    expect(profileUser).toHaveProperty("nationalIdentity", "75598745178");
     expect(profileUser).toHaveProperty(
       "fullName",
       "Alguém com Sobrenome da Silva"

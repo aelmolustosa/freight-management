@@ -14,9 +14,9 @@ describe("Authenticate User Controller", () => {
     await AppDataSource.runMigrations();
 
     await request(app).post("/users").send({
-      nationalIdentity: "73290726134",
+      nationalIdentity: "75598745178",
       password: "y3*072PU",
-      fullName: "Aelmo Lustosa da Silva",
+      fullName: "Euclides Miguela",
       profile: "Admin",
       companyId: "00111222444455",
     });
@@ -25,7 +25,7 @@ describe("Authenticate User Controller", () => {
 
   it("Should be able to login", async () => {
     const response = await request(app).post("/login").send({
-      nationalIdentity: "73290726134",
+      nationalIdentity: "75598745178",
       password: "y3*072PU",
     });
     await delay(500);
@@ -35,7 +35,7 @@ describe("Authenticate User Controller", () => {
 
   it("Should not be able to login with wrong password", async () => {
     const response = await request(app).post("/login").send({
-      nationalIdentity: "73290726134",
+      nationalIdentity: "75598745178",
       password: "y3*072P1",
     });
     await delay(500);

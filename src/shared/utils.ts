@@ -22,3 +22,7 @@ export function delay(delayInms) {
     }, delayInms);
   });
 }
+
+export function onlyNumbers(pText: string) {
+  return pText.replace(/\D/g, "");
+}

@@ -17,7 +17,7 @@ class ProfileUserUseCase {
   ): Promise<IProfileUserDTO> {
     const logged_user = await this.usersRepository.findById(logged_user_id);
 
-    if (logged_user.profile !== "Admin") {
+    if (logged_user.profile.toLowerCase() !== "admin") {
       if (logged_user.nationalIdentity !== nationalIdentity) {
         throw new AppError("Not allowed");
       }

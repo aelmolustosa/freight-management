@@ -2,7 +2,7 @@ import { hash } from "bcryptjs";
 import { inject, injectable } from "tsyringe";
 
 import { AppError } from "@shared/errors/AppError";
-import { isValidCPF } from "@shared/utils";
+import { isValidCPF, onlyNumbers } from "@shared/utils";
 
 import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
 import { User } from "../../infra/typeorm/entities/User";
@@ -23,6 +23,8 @@ class CreateUserUseCase {
     companyId,
   }: ICreateUserDTO): Promise<User> {
     let userProfile = profile;
+    const nationalIdentityNumbers: string = onlyNumbers(nationalIdentity);
+
     if (!userProfile) {
       userProfile = "driver";
     }
@@ -39,18 +41,19 @@ class CreateUserUseCase {
       throw new AppError("Company is required");
     }
 
-    if (!nationalIdentity) {
+    if (!nationalIdentityNumbers) {
       throw new AppError("National Identity is required");
     }
 
-    const validatedNationalIdentity = isValidCPF(nationalIdentity);
+    const validatedNationalIdentity = isValidCPF(nationalIdentityNumbers);
     if (!validatedNationalIdentity) {
       throw new AppError("National Identity is not valid");
     }
 
     const userAlreadyExists = await this.usersRepository.findByNationalIdentity(
-      nationalIdentity
+      nationalIdentityNumbers
     );
+
     if (userAlreadyExists) {
       throw new AppError("User already exists");
     }

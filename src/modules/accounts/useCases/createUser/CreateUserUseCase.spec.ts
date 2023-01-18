@@ -14,7 +14,7 @@ describe("Create Car", () => {
 
   it("Should be able to create a new user", async () => {
     const user = await createUserUseCase.execute({
-      nationalIdentity: "73290726134",
+      nationalIdentity: "75598745178",
       password: "y3*072PU",
       fullName: "Alguém com Sobrenome da Silva",
       profile: "admin",
@@ -26,7 +26,7 @@ describe("Create Car", () => {
 
   it("Should not be able to create a new user with nationalIdentity already existent in other user", async () => {
     await createUserUseCase.execute({
-      nationalIdentity: "73290726134",
+      nationalIdentity: "75598745178",
       password: "y3*072PU",
       fullName: "Alguém com Sobrenome da Silva",
       profile: "admin",
@@ -35,7 +35,7 @@ describe("Create Car", () => {
 
     await expect(
       createUserUseCase.execute({
-        nationalIdentity: "73290726134",
+        nationalIdentity: "75598745178",
         password: "1A2b3C@4",
         fullName: "Alguém com Sobrenome da Silva",
         profile: "admin",
@@ -47,7 +47,7 @@ describe("Create Car", () => {
   it("Should not be able to create a new user with blank password", async () => {
     await expect(
       createUserUseCase.execute({
-        nationalIdentity: "73290726134",
+        nationalIdentity: "75598745178",
         password: "",
         fullName: "Alguém com Sobrenome da Silva",
         profile: "admin",
@@ -83,7 +83,7 @@ describe("Create Car", () => {
   it("Should not be able to create a new user with no Full Name", async () => {
     await expect(
       createUserUseCase.execute({
-        nationalIdentity: "73290726134",
+        nationalIdentity: "75598745178",
         password: "y3*072PU",
         fullName: "",
         profile: "admin",
@@ -95,7 +95,7 @@ describe("Create Car", () => {
   it("Should not be able to create a new user with no Company", async () => {
     await expect(
       createUserUseCase.execute({
-        nationalIdentity: "73290726134",
+        nationalIdentity: "75598745178",
         password: "y3*072PU",
         fullName: "Alguém com Sobrenome da Silva",
         profile: "admin",

@@ -15,9 +15,9 @@ describe("Create User Controller", () => {
 
   it("Should be able to create a user", async () => {
     const responsePostUsers = await request(app).post("/users").send({
-      nationalIdentity: "73290726134",
+      nationalIdentity: "75598745178",
       password: "y3*072PU",
-      fullName: "Aelmo Lustosa da Silva",
+      fullName: "Euclides Miguela",
       profile: "Admin",
       companyId: "00111222444455",
     });
