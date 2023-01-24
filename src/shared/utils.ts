@@ -53,7 +53,7 @@ export function isValidCNPJ(pCNPJ: string) {
 
   // Os quatro blocos seguintes de funções irá reaizar a validação do CNPJ propriamente dito, conferindo se o DV bate. Caso alguma das funções não consiga verificar
   // o DV corretamente, mostrará uma mensagem de erro ao usuário e retornará falso, para que o usário posso digitar novamente um número
-  // eslint-disable-next-line no-plusplus
+  /* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
   for (let i = tamanho; i >= 1; i--) {
     soma += Number(numeros.charAt(tamanho - i)) * pos;
     pos -= 1;
@@ -72,7 +72,7 @@ export function isValidCNPJ(pCNPJ: string) {
   numeros = strCNPJ.substring(0, tamanho);
   soma = 0;
   pos = tamanho - 7;
-  // eslint-disable-next-line no-plusplus
+
   for (let k = tamanho; k >= 1; k--) {
     soma += Number(numeros.charAt(tamanho - k)) * pos;
     pos -= 1;

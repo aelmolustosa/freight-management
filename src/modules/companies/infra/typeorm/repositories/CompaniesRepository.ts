@@ -1,8 +1,9 @@
+import { ICreateCompany } from "@modules/companies/dtos/ICreateCompany";
+import { ICompaniesRepository } from "@modules/companies/repositories/ICompaniesRepository";
 import { Repository } from "typeorm";
 
-import { AppDataSource } from "../../../../../shared/infra/typeorm/DataSource";
-import { ICreateCompany } from "../../../dtos/ICreateCompany";
-import { ICompaniesRepository } from "../../../repositories/ICompaniesRepository";
+import { AppDataSource } from "@shared/infra/typeorm/DataSource";
+
 import { Company } from "../entities/Company";
 
 class CompaniesRepository implements ICompaniesRepository {
