@@ -1,32 +1,49 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+
+import { Company } from "../../../../companies/infra/typeorm/entities/Company";
 
 @Entity("users")
 class User {
-  @PrimaryColumn()
-  id: string;
+  @PrimaryColumn({ name: "user_id" })
+  userId: string;
 
-  @Column()
+  @Column({ name: "national_identity" })
   nationalIdentity: string;
 
   @Column()
   password: string;
 
-  @Column()
+  @Column({ name: "full_name" })
   fullName: string;
 
   @Column()
   profile: string;
 
-  @Column()
+  @Column({ name: "company_id" })
   companyId: string;
 
-  @Column()
-  created_at: Date;
+  @CreateDateColumn({ name: "created_at" })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: "updated_at" })
+  updatedAt: Date;
+
+  @ManyToOne(() => Company)
+  @JoinColumn()
+  company: Company;
 
   constructor() {
-    if (!this.id) {
-      this.id = uuidV4();
+    if (!this.userId) {
+      this.userId = uuidV4();
     }
   }
 }

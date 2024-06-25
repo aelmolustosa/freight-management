@@ -28,9 +28,9 @@ class CompaniesRepository implements ICompaniesRepository {
     return companyCreated;
   }
 
-  async findById(company_id: string): Promise<Company> {
+  async findById(companyId: string): Promise<Company> {
     const company = await this.repository.findOne({
-      where: { id: company_id },
+      where: { companyId },
     });
     return company;
   }

@@ -7,12 +7,12 @@ export class CreateUsers1661868114830 implements MigrationInterface {
         name: "users",
         columns: [
           {
-            name: "id",
+            name: "user_id",
             type: "uuid",
             isPrimary: true,
           },
           {
-            name: "nationalIdentity",
+            name: "national_identity",
             type: "varchar",
             isUnique: true,
           },
@@ -21,7 +21,7 @@ export class CreateUsers1661868114830 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "fullName",
+            name: "full_name",
             type: "varchar",
           },
           {
@@ -29,7 +29,7 @@ export class CreateUsers1661868114830 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "companyId",
+            name: "company_id",
             type: "varchar",
           },
           {
@@ -37,12 +37,16 @@ export class CreateUsers1661868114830 implements MigrationInterface {
             type: "timestamp",
             default: "now()",
           },
+          {
+            name: "updated_at",
+            type: "timestamp",
+          },
         ],
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.dropTable("users");
+    await queryRunner.dropTable("users");
   }
 }

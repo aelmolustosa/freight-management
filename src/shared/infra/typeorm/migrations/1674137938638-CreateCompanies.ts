@@ -7,7 +7,7 @@ export class CreateCompanies1674137938638 implements MigrationInterface {
         name: "companies",
         columns: [
           {
-            name: "id",
+            name: "company_id",
             type: "uuid",
             isPrimary: true,
           },
@@ -16,7 +16,7 @@ export class CreateCompanies1674137938638 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "nationalIdentity",
+            name: "national_identity",
             type: "varchar",
             isUnique: true,
             isNullable: false,
@@ -29,12 +29,21 @@ export class CreateCompanies1674137938638 implements MigrationInterface {
             name: "country",
             type: "varchar",
           },
+          {
+            name: "created_at",
+            type: "timestamp",
+            default: "now()",
+          },
+          {
+            name: "updated_at",
+            type: "timestamp",
+          },
         ],
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("users");
+    await queryRunner.dropTable("companies");
   }
 }

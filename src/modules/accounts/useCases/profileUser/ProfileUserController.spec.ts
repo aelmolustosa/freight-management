@@ -22,7 +22,7 @@ describe("ProfileUserController", () => {
 
     // 0.create a user A
     await request(app).post("/users").send({
-      nationalIdentity: "75598745178",
+      nationalIdentity: "7559874517 8",
       password: "y3*072PU",
       fullName: "Euclides Miguela",
       profile: "Admin",
